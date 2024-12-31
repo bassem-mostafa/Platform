@@ -1,0 +1,81 @@
+[submodule "Kernel"]
+	path = Kernel
+	url = https://github.com/bassem-mostafa/Kernel.git
+[submodule "Library/BUFFER"]
+	path = Library/BUFFER
+	url = https://github.com/bassem-mostafa/BUFFER.git
+[submodule "Library/LIST"]
+	path = Library/LIST
+	url = https://github.com/bassem-mostafa/LIST.git
+[submodule "Library/UTIL"]
+	path = Library/UTIL
+	url = https://github.com/bassem-mostafa/UTIL.git
+[submodule "Module/ADC"]
+	path = Module/ADC
+	url = https://github.com/bassem-mostafa/ADC.git
+[submodule "Module/DMA"]
+	path = Module/DMA
+	url = https://github.com/bassem-mostafa/DMA.git
+[submodule "Module/EEPROM"]
+	path = Module/EEPROM
+	url = https://github.com/bassem-mostafa/EEPROM.git
+[submodule "Module/FLASH"]
+	path = Module/FLASH
+	url = https://github.com/bassem-mostafa/FLASH.git
+[submodule "Module/GPIO"]
+	path = Module/GPIO
+	url = https://github.com/bassem-mostafa/GPIO.git
+[submodule "Module/GPRS"]
+	path = Module/GPRS
+	url = https://github.com/bassem-mostafa/GPRS.git
+[submodule "Module/GSM"]
+	path = Module/GSM
+	url = https://github.com/bassem-mostafa/GSM.git
+[submodule "Module/LCD"]
+	path = Module/LCD
+	url = https://github.com/bassem-mostafa/LCD.git
+[submodule "Module/LORA"]
+	path = Module/LORA
+	url = https://github.com/bassem-mostafa/LORA.git
+[submodule "Module/PWR"]
+	path = Module/PWR
+	url = https://github.com/bassem-mostafa/PWR.git
+[submodule "Module/RAM"]
+	path = Module/RAM
+	url = https://github.com/bassem-mostafa/RAM.git
+[submodule "Module/RTC"]
+	path = Module/RTC
+	url = https://github.com/bassem-mostafa/RTC.git
+[submodule "Module/SPI"]
+	path = Module/SPI
+	url = https://github.com/bassem-mostafa/SPI.git
+[submodule "Module/TCH"]
+	path = Module/TCH
+	url = https://github.com/bassem-mostafa/TCH.git
+[submodule "Module/TDC"]
+	path = Module/TDC
+	url = https://github.com/bassem-mostafa/TDC.git
+[submodule "Module/TMR"]
+	path = Module/TMR
+	url = https://github.com/bassem-mostafa/TMR.git
+[submodule "Module/UART"]
+	path = Module/UART
+	url = https://github.com/bassem-mostafa/UART.git
+[submodule "Module/USB"]
+	path = Module/USB
+	url = https://github.com/bassem-mostafa/USB.git
+[submodule "Service/CLI"]
+	path = Service/CLI
+	url = https://github.com/bassem-mostafa/CLI.git
+[submodule "Service/LOG"]
+	path = Service/LOG
+	url = https://github.com/bassem-mostafa/LOG.git
+[submodule "Service/MEM"]
+	path = Service/MEM
+	url = https://github.com/bassem-mostafa/MEM.git
+[submodule "Service/NET"]
+	path = Service/NET
+	url = https://github.com/bassem-mostafa/NET.git
+[submodule "Service/TIM"]
+	path = Service/TIM
+	url = https://github.com/bassem-mostafa/TIM.git
