@@ -447,13 +447,6 @@ KERNEL_Status_t Task_LOG_Initialize( void )
             break;
         }
 
-        // TODO Remove the following on release
-        if ( ( LOG_Status = LOG_SetLevel( LOG_All, LOG_Level_Debug ) ) != LOG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-
         Status = KERNEL_Status_Success;
     }
     while ( 0 );
@@ -979,7 +972,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260117-1502";
+const char PLATFORM_VERSION[] = "0.0.0.v20260120-0211";
 
 // #############################################################################
 // #### File Guard #############################################################
