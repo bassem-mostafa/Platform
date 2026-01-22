@@ -51,7 +51,7 @@ output=$(echo "$sources" | xargs -I% sed -i -E "s/VERSION\[\] = \".+?\"/VERSION\
 output=$(echo "doxygen.conf" | xargs -I% sed -i -E "s/(PROJECT_NUMBER += ).+/\1$version/" %)
 
 # Commit
-echo "$repositories" | xargs -I% sh -c "echo % | sed -E \"s/./${PWD##*\/}/\" | xargs -I$ sh -c \"printf \\\"commit \\\\\\\`$\\\\\\\`\n\\\" && cd % && git add . && git commit --quiet --amend -m \\\"version $version\\\"\""
+echo "$repositories" | xargs -I% sh -c "echo % | sed -E \"s/./${PWD##*\/}/\" | xargs -I$ sh -c \"printf \\\"commit \\\\\\\`$\\\\\\\`\n\\\" && cd % && git add . && git commit --quiet -m \\\"version $version\\\"\""
 
 printf "\n\n"
 printf "Generating Documentation ...\n"
