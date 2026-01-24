@@ -60,171 +60,177 @@
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
 
-KERNEL_Status_t Task_PWR_Initialize( void );
-KERNEL_Status_t Task_PWR_Cycle( void );
-KERNEL_Status_t Task_PWR_DeInitialize( void );
+static KERNEL_Status_t Task_PWR_Initialize( void );
+static KERNEL_Status_t Task_PWR_Cycle( void );
+static KERNEL_Status_t Task_PWR_DeInitialize( void );
 
-KERNEL_Status_t Task_GPIO_Initialize( void );
-KERNEL_Status_t Task_GPIO_Cycle( void );
-KERNEL_Status_t Task_GPIO_DeInitialize( void );
+static KERNEL_Status_t Task_GPIO_Initialize( void );
+static KERNEL_Status_t Task_GPIO_Cycle( void );
+static KERNEL_Status_t Task_GPIO_DeInitialize( void );
 
-KERNEL_Status_t Task_DMA_Initialize( void );
-KERNEL_Status_t Task_DMA_Cycle( void );
-KERNEL_Status_t Task_DMA_DeInitialize( void );
+static KERNEL_Status_t Task_DMA_Initialize( void );
+static KERNEL_Status_t Task_DMA_Cycle( void );
+static KERNEL_Status_t Task_DMA_DeInitialize( void );
 
-KERNEL_Status_t Task_USB_Initialize( void );
-KERNEL_Status_t Task_USB_Cycle( void );
-KERNEL_Status_t Task_USB_DeInitialize( void );
+static KERNEL_Status_t Task_USB_Initialize( void );
+static KERNEL_Status_t Task_USB_Cycle( void );
+static KERNEL_Status_t Task_USB_DeInitialize( void );
 
-KERNEL_Status_t Task_UART_Initialize( void );
-KERNEL_Status_t Task_UART_Cycle( void );
-KERNEL_Status_t Task_UART_DeInitialize( void );
+static KERNEL_Status_t Task_UART_Initialize( void );
+static KERNEL_Status_t Task_UART_Cycle( void );
+static KERNEL_Status_t Task_UART_DeInitialize( void );
 
-KERNEL_Status_t Task_LOG_Initialize( void );
-KERNEL_Status_t Task_LOG_Cycle( void );
-KERNEL_Status_t Task_LOG_DeInitialize( void );
+static KERNEL_Status_t Task_LOG_Initialize( void );
+static KERNEL_Status_t Task_LOG_Cycle( void );
+static KERNEL_Status_t Task_LOG_DeInitialize( void );
 
-KERNEL_Status_t Task_RTC_Initialize( void );
-KERNEL_Status_t Task_RTC_Cycle( void );
-KERNEL_Status_t Task_RTC_DeInitialize( void );
+static KERNEL_Status_t Task_RTC_Initialize( void );
+static KERNEL_Status_t Task_RTC_Cycle( void );
+static KERNEL_Status_t Task_RTC_DeInitialize( void );
 
-KERNEL_Status_t Task_TIM_Initialize( void );
-KERNEL_Status_t Task_TIM_Cycle( void );
-KERNEL_Status_t Task_TIM_DeInitialize( void );
+static KERNEL_Status_t Task_TIM_Initialize( void );
+static KERNEL_Status_t Task_TIM_Cycle( void );
+static KERNEL_Status_t Task_TIM_DeInitialize( void );
 
-KERNEL_Status_t Task_SPI_Initialize( void );
-KERNEL_Status_t Task_SPI_Cycle( void );
-KERNEL_Status_t Task_SPI_DeInitialize( void );
+static KERNEL_Status_t Task_SPI_Initialize( void );
+static KERNEL_Status_t Task_SPI_Cycle( void );
+static KERNEL_Status_t Task_SPI_DeInitialize( void );
 
-KERNEL_Status_t Task_EEPROM_Initialize( void );
-KERNEL_Status_t Task_EEPROM_Cycle( void );
-KERNEL_Status_t Task_EEPROM_DeInitialize( void );
+static KERNEL_Status_t Task_EEPROM_Initialize( void );
+static KERNEL_Status_t Task_EEPROM_Cycle( void );
+static KERNEL_Status_t Task_EEPROM_DeInitialize( void );
 
-KERNEL_Status_t Task_TDC_Initialize( void );
-KERNEL_Status_t Task_TDC_Cycle( void );
-KERNEL_Status_t Task_TDC_DeInitialize( void );
+static KERNEL_Status_t Task_TDC_Initialize( void );
+static KERNEL_Status_t Task_TDC_Cycle( void );
+static KERNEL_Status_t Task_TDC_DeInitialize( void );
 
-KERNEL_Status_t Task_GSM_Initialize( void );
-KERNEL_Status_t Task_GSM_Cycle( void );
-KERNEL_Status_t Task_GSM_DeInitialize( void );
+static KERNEL_Status_t Task_GSM_Initialize( void );
+static KERNEL_Status_t Task_GSM_Cycle( void );
+static KERNEL_Status_t Task_GSM_DeInitialize( void );
 
-KERNEL_Status_t Task_LCD_Initialize( void );
-KERNEL_Status_t Task_LCD_Cycle( void );
-KERNEL_Status_t Task_LCD_DeInitialize( void );
+static KERNEL_Status_t Task_LCD_Initialize( void );
+static KERNEL_Status_t Task_LCD_Cycle( void );
+static KERNEL_Status_t Task_LCD_DeInitialize( void );
 
-KERNEL_Status_t Task_CLI_Initialize( void );
-KERNEL_Status_t Task_CLI_Cycle( void );
-KERNEL_Status_t Task_CLI_DeInitialize( void );
+#if 0 // FIXME Enhance platform CLI
+static KERNEL_Status_t Task_CLI_Initialize( void );
+static KERNEL_Status_t Task_CLI_Cycle( void );
+static KERNEL_Status_t Task_CLI_DeInitialize( void );
+#endif
 
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
 
-static KERNEL_Task_t KERNEL_Task_PWR = {
+static KERNEL_Task_t Task_PWR = {
     Task_PWR_Initialize,
     Task_PWR_Cycle,
     Task_PWR_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_GPIO = {
+static KERNEL_Task_t Task_GPIO = {
     Task_GPIO_Initialize,
     Task_GPIO_Cycle,
     Task_GPIO_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_DMA = {
+static KERNEL_Task_t Task_DMA = {
     Task_DMA_Initialize,
     Task_DMA_Cycle,
     Task_DMA_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_USB = {
+static KERNEL_Task_t Task_USB = {
     Task_USB_Initialize,
     Task_USB_Cycle,
     Task_USB_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_UART = {
+static KERNEL_Task_t Task_UART = {
     Task_UART_Initialize,
     Task_UART_Cycle,
     Task_UART_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_LOG = {
+static KERNEL_Task_t Task_LOG = {
     Task_LOG_Initialize,
     Task_LOG_Cycle,
     Task_LOG_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_RTC = {
+static KERNEL_Task_t Task_RTC = {
     Task_RTC_Initialize,
     Task_RTC_Cycle,
     Task_RTC_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_TIM = {
+static KERNEL_Task_t Task_TIM = {
     Task_TIM_Initialize,
     Task_TIM_Cycle,
     Task_TIM_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_SPI = {
+static KERNEL_Task_t Task_SPI = {
     Task_SPI_Initialize,
     Task_SPI_Cycle,
     Task_SPI_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_EEPROM = {
+static KERNEL_Task_t Task_EEPROM = {
     Task_EEPROM_Initialize,
     Task_EEPROM_Cycle,
     Task_EEPROM_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_TDC = {
+static KERNEL_Task_t Task_TDC = {
     Task_TDC_Initialize,
     Task_TDC_Cycle,
     Task_TDC_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_GSM = {
+static KERNEL_Task_t Task_GSM = {
     Task_GSM_Initialize,
     Task_GSM_Cycle,
     Task_GSM_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_LCD = {
+static KERNEL_Task_t Task_LCD = {
     Task_LCD_Initialize,
     Task_LCD_Cycle,
     Task_LCD_DeInitialize,
 };
 
-static KERNEL_Task_t KERNEL_Task_CLI = {
+#if 0 // FIXME Enhance platform CLI
+static KERNEL_Task_t Task_CLI = {
     Task_CLI_Initialize,
     Task_CLI_Cycle,
     Task_CLI_DeInitialize,
 };
+#endif
 
-static KERNEL_Task_t * KERNEL_Task[] = {
-    &KERNEL_Task_PWR,
-    &KERNEL_Task_GPIO,
+static KERNEL_Task_t * Platform_Task[] = {
+    &Task_PWR,
+    &Task_GPIO,
 
-    &KERNEL_Task_DMA,
+    &Task_DMA,
 
-    &KERNEL_Task_RTC,
-    &KERNEL_Task_TIM,
+    &Task_RTC,
+    &Task_TIM,
 
-    &KERNEL_Task_USB,
-    &KERNEL_Task_UART,
-    &KERNEL_Task_LOG,
+    &Task_USB,
+    &Task_UART,
+    &Task_LOG,
 
-    &KERNEL_Task_SPI,
-    &KERNEL_Task_EEPROM,
-    &KERNEL_Task_TDC,
+    &Task_SPI,
+    &Task_EEPROM,
+    &Task_TDC,
 
-    &KERNEL_Task_GSM,
+    &Task_GSM,
 
-    &KERNEL_Task_LCD,
-    &KERNEL_Task_CLI,
+    &Task_LCD,
+#if 0 // FIXME Enhance platform CLI
+//    &Task_CLI, // FIXME
+#endif
 
     NULL, // End indicator
 };
@@ -233,60 +239,63 @@ static KERNEL_Task_t * KERNEL_Task[] = {
 // #### Private Method(s) ######################################################
 // #############################################################################
 
-KERNEL_Status_t Task_PWR_Initialize( void )
+static KERNEL_Status_t Task_PWR_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         PWR_Status_t PWR_Status = PWR_Status_Error;
-        if ( ( PWR_Status = PWR_Initialize( ) ) != PWR_Status_Success )
+        if ( ( PWR_Status = PWR_Initialize( PWR_All ) ) != PWR_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_PWR_Cycle( void )
+static KERNEL_Status_t Task_PWR_Cycle( void ) // Note: Execution time around 0.188 to 0.220 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         PWR_Status_t PWR_Status = PWR_Status_Error;
-        if ( ( PWR_Status = PWR_Cycle( ) ) != PWR_Status_Success )
+        if ( ( PWR_Status = PWR_Cycle( PWR_All ) ) != PWR_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_PWR_DeInitialize( void )
+static KERNEL_Status_t Task_PWR_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         PWR_Status_t PWR_Status = PWR_Status_Error;
-        if ( ( PWR_Status = PWR_DeInitialize( ) ) != PWR_Status_Success )
+        if ( ( PWR_Status = PWR_DeInitialize( PWR_All ) ) != PWR_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_GPIO_Initialize( void )
+static KERNEL_Status_t Task_GPIO_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -296,17 +305,15 @@ KERNEL_Status_t Task_GPIO_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_GPIO_Cycle( void )
+static KERNEL_Status_t Task_GPIO_Cycle( void ) // Note: Execution time around 1.3 to 1.8 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -316,17 +323,15 @@ KERNEL_Status_t Task_GPIO_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_GPIO_DeInitialize( void )
+static KERNEL_Status_t Task_GPIO_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -336,17 +341,15 @@ KERNEL_Status_t Task_GPIO_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_DMA_Initialize( void )
+static KERNEL_Status_t Task_DMA_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -356,17 +359,15 @@ KERNEL_Status_t Task_DMA_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_DMA_Cycle( void )
+static KERNEL_Status_t Task_DMA_Cycle( void ) // Note: Execution time around 0.204 to 0.224 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -376,17 +377,15 @@ KERNEL_Status_t Task_DMA_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_DMA_DeInitialize( void )
+static KERNEL_Status_t Task_DMA_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -396,17 +395,16 @@ KERNEL_Status_t Task_DMA_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_USB_Initialize( void )
+static KERNEL_Status_t Task_USB_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         USB_Status_t USB_Status = USB_Status_Error;
@@ -415,15 +413,16 @@ KERNEL_Status_t Task_USB_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_USB_Cycle( void )
+static KERNEL_Status_t Task_USB_Cycle( void ) // Note: Execution time around 0.196 to 0.224 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         USB_Status_t USB_Status = USB_Status_Error;
@@ -432,15 +431,16 @@ KERNEL_Status_t Task_USB_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_USB_DeInitialize( void )
+static KERNEL_Status_t Task_USB_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         USB_Status_t USB_Status = USB_Status_Error;
@@ -449,15 +449,16 @@ KERNEL_Status_t Task_USB_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_UART_Initialize( void )
+static KERNEL_Status_t Task_UART_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         UART_Status_t UART_Status = UART_Status_Error;
@@ -466,15 +467,16 @@ KERNEL_Status_t Task_UART_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_UART_Cycle( void )
+static KERNEL_Status_t Task_UART_Cycle( void ) // Note: Execution time around 0.476 to 0.876 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         UART_Status_t UART_Status = UART_Status_Error;
@@ -483,15 +485,16 @@ KERNEL_Status_t Task_UART_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_UART_DeInitialize( void )
+static KERNEL_Status_t Task_UART_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         UART_Status_t UART_Status = UART_Status_Error;
@@ -500,15 +503,15 @@ KERNEL_Status_t Task_UART_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_LOG_Initialize( void )
+static KERNEL_Status_t Task_LOG_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -518,17 +521,16 @@ KERNEL_Status_t Task_LOG_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t Task_LOG_Cycle( void )
+static KERNEL_Status_t Task_LOG_Cycle( void ) // Note: Execution time around 0.216 to 0.564 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         LOG_Status_t LOG_Status = LOG_Status_Error;
@@ -537,15 +539,16 @@ KERNEL_Status_t Task_LOG_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_LOG_DeInitialize( void )
+static KERNEL_Status_t Task_LOG_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         LOG_Status_t LOG_Status = LOG_Status_Error;
@@ -554,15 +557,16 @@ KERNEL_Status_t Task_LOG_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_RTC_Initialize( void )
+static KERNEL_Status_t Task_RTC_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         RTC_Status_t RTC_Status = RTC_Status_Error;
@@ -571,15 +575,16 @@ KERNEL_Status_t Task_RTC_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_RTC_Cycle( void )
+static KERNEL_Status_t Task_RTC_Cycle( void ) // Note: Execution time around 0.280 to 0.506 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         RTC_Status_t RTC_Status = RTC_Status_Error;
@@ -588,15 +593,16 @@ KERNEL_Status_t Task_RTC_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_RTC_DeInitialize( void )
+static KERNEL_Status_t Task_RTC_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         RTC_Status_t RTC_Status = RTC_Status_Error;
@@ -605,15 +611,16 @@ KERNEL_Status_t Task_RTC_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TIM_Initialize( void )
+static KERNEL_Status_t Task_TIM_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TIM_Status_t TIM_Status = TIM_Status_Error;
@@ -622,15 +629,16 @@ KERNEL_Status_t Task_TIM_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TIM_Cycle( void )
+static KERNEL_Status_t Task_TIM_Cycle( void ) // Note: Execution time around 0.294 to 0.522 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TIM_Status_t TIM_Status = TIM_Status_Error;
@@ -639,15 +647,16 @@ KERNEL_Status_t Task_TIM_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TIM_DeInitialize( void )
+static KERNEL_Status_t Task_TIM_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TIM_Status_t TIM_Status = TIM_Status_Error;
@@ -656,15 +665,16 @@ KERNEL_Status_t Task_TIM_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_SPI_Initialize( void )
+static KERNEL_Status_t Task_SPI_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         SPI_Status_t SPI_Status = SPI_Status_Error;
@@ -673,15 +683,16 @@ KERNEL_Status_t Task_SPI_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_SPI_Cycle( void )
+static KERNEL_Status_t Task_SPI_Cycle( void ) // Note: Execution time around 0.820 to 10.2 ms !!!
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         SPI_Status_t SPI_Status = SPI_Status_Error;
@@ -690,15 +701,16 @@ KERNEL_Status_t Task_SPI_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_SPI_DeInitialize( void )
+static KERNEL_Status_t Task_SPI_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         SPI_Status_t SPI_Status = SPI_Status_Error;
@@ -707,15 +719,16 @@ KERNEL_Status_t Task_SPI_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_EEPROM_Initialize( void )
+static KERNEL_Status_t Task_EEPROM_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         EEPROM_Status_t EEPROM_Status = EEPROM_Status_Error;
@@ -724,15 +737,16 @@ KERNEL_Status_t Task_EEPROM_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_EEPROM_Cycle( void )
+static KERNEL_Status_t Task_EEPROM_Cycle( void ) // Note: Execution time around 0.180 to 0.400 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         EEPROM_Status_t EEPROM_Status = EEPROM_Status_Error;
@@ -741,15 +755,16 @@ KERNEL_Status_t Task_EEPROM_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_EEPROM_DeInitialize( void )
+static KERNEL_Status_t Task_EEPROM_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         EEPROM_Status_t EEPROM_Status = EEPROM_Status_Error;
@@ -758,15 +773,16 @@ KERNEL_Status_t Task_EEPROM_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TDC_Initialize( void )
+static KERNEL_Status_t Task_TDC_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TDC_Status_t TDC_Status = TDC_Status_Error;
@@ -775,15 +791,16 @@ KERNEL_Status_t Task_TDC_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TDC_Cycle( void )
+static KERNEL_Status_t Task_TDC_Cycle( void ) // Note: Execution time around 0.324 to 0.956 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TDC_Status_t TDC_Status = TDC_Status_Error;
@@ -792,15 +809,16 @@ KERNEL_Status_t Task_TDC_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_TDC_DeInitialize( void )
+static KERNEL_Status_t Task_TDC_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         TDC_Status_t TDC_Status = TDC_Status_Error;
@@ -809,15 +827,16 @@ KERNEL_Status_t Task_TDC_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_GSM_Initialize( void )
+static KERNEL_Status_t Task_GSM_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         GSM_Status_t GSM_Status = GSM_Status_Error;
@@ -826,15 +845,16 @@ KERNEL_Status_t Task_GSM_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_GSM_Cycle( void )
+static KERNEL_Status_t Task_GSM_Cycle( void ) // Note: Execution time around 0.364 to 1.26 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         GSM_Status_t GSM_Status = GSM_Status_Error;
@@ -843,15 +863,16 @@ KERNEL_Status_t Task_GSM_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_GSM_DeInitialize( void )
+static KERNEL_Status_t Task_GSM_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         GSM_Status_t GSM_Status = GSM_Status_Error;
@@ -860,15 +881,16 @@ KERNEL_Status_t Task_GSM_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_LCD_Initialize( void )
+static KERNEL_Status_t Task_LCD_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
@@ -877,15 +899,16 @@ KERNEL_Status_t Task_LCD_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_LCD_Cycle( void )
+static KERNEL_Status_t Task_LCD_Cycle( void ) // Note: Execution time around 0.340 to 4.55 ms
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
@@ -894,15 +917,16 @@ KERNEL_Status_t Task_LCD_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_LCD_DeInitialize( void )
+static KERNEL_Status_t Task_LCD_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
@@ -911,15 +935,17 @@ KERNEL_Status_t Task_LCD_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_CLI_Initialize( void )
+#if 0 // FIXME Enhance platform CLI
+static KERNEL_Status_t Task_CLI_Initialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
@@ -928,15 +954,16 @@ KERNEL_Status_t Task_CLI_Initialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_CLI_Cycle( void )
+static KERNEL_Status_t Task_CLI_Cycle( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
@@ -945,15 +972,16 @@ KERNEL_Status_t Task_CLI_Cycle( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
-KERNEL_Status_t Task_CLI_DeInitialize( void )
+static KERNEL_Status_t Task_CLI_DeInitialize( void )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
@@ -962,11 +990,12 @@ KERNEL_Status_t Task_CLI_DeInitialize( void )
             Status = KERNEL_Status_Error;
             break;
         }
-        Status = KERNEL_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
+#endif
 
 // #############################################################################
 // #### Public Method(s) #######################################################
@@ -985,7 +1014,7 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
             break;
         }
 
-        for ( KERNEL_Task_t ** Task = KERNEL_Task; *Task != NULL; Task++ )
+        for ( KERNEL_Task_t ** Task = Platform_Task; *Task != NULL; Task++ )
         {
             if ( ( KERNEL_Status = KERNEL_TaskCreate( *Task ) ) != KERNEL_Status_Success )
             {
@@ -1044,7 +1073,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260124-1653";
+const char PLATFORM_VERSION[] = "0.0.0.v20260125-0138";
 
 // #############################################################################
 // #### File Guard #############################################################
