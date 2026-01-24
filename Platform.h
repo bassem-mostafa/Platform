@@ -103,6 +103,7 @@ extern "C"
      */
 
     #include "Module/ADC/ADC.h"
+    #include "Module/DMA/DMA.h"
     #include "Module/EEPROM/EEPROM.h"
     // #include "Module/FLASH/FLASH.h"
     #include "Module/GPIO/GPIO.h"

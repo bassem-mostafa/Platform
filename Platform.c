@@ -68,6 +68,10 @@ KERNEL_Status_t Task_GPIO_Initialize( void );
 KERNEL_Status_t Task_GPIO_Cycle( void );
 KERNEL_Status_t Task_GPIO_DeInitialize( void );
 
+KERNEL_Status_t Task_DMA_Initialize( void );
+KERNEL_Status_t Task_DMA_Cycle( void );
+KERNEL_Status_t Task_DMA_DeInitialize( void );
+
 KERNEL_Status_t Task_USB_Initialize( void );
 KERNEL_Status_t Task_USB_Cycle( void );
 KERNEL_Status_t Task_USB_DeInitialize( void );
@@ -126,6 +130,12 @@ static KERNEL_Task_t KERNEL_Task_GPIO = {
     Task_GPIO_Initialize,
     Task_GPIO_Cycle,
     Task_GPIO_DeInitialize,
+};
+
+static KERNEL_Task_t KERNEL_Task_DMA = {
+    Task_DMA_Initialize,
+    Task_DMA_Cycle,
+    Task_DMA_DeInitialize,
 };
 
 static KERNEL_Task_t KERNEL_Task_USB = {
@@ -197,6 +207,8 @@ static KERNEL_Task_t KERNEL_Task_CLI = {
 static KERNEL_Task_t * KERNEL_Task[] = {
     &KERNEL_Task_PWR,
     &KERNEL_Task_GPIO,
+
+    &KERNEL_Task_DMA,
 
     &KERNEL_Task_RTC,
     &KERNEL_Task_TIM,
@@ -320,6 +332,66 @@ KERNEL_Status_t Task_GPIO_DeInitialize( void )
     {
         GPIO_Status_t GPIO_Status = GPIO_Status_Error;
         if ( ( GPIO_Status = GPIO_DeInitialize( GPIO_All ) ) != GPIO_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+
+        Status = KERNEL_Status_Success;
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t Task_DMA_Initialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        DMA_Status_t DMA_Status = DMA_Status_Error;
+        if ( ( DMA_Status = DMA_Initialize( DMA_All ) ) != DMA_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+
+        Status = KERNEL_Status_Success;
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t Task_DMA_Cycle( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        DMA_Status_t DMA_Status = DMA_Status_Error;
+        if ( ( DMA_Status = DMA_Cycle( DMA_All ) ) != DMA_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+
+        Status = KERNEL_Status_Success;
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t Task_DMA_DeInitialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        DMA_Status_t DMA_Status = DMA_Status_Error;
+        if ( ( DMA_Status = DMA_DeInitialize( DMA_All ) ) != DMA_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -800,7 +872,7 @@ KERNEL_Status_t Task_LCD_Initialize( void )
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
-        if ( ( LCD_Status = LCD_Initialize( ) ) != LCD_Status_Success )
+        if ( ( LCD_Status = LCD_Initialize( LCD_All ) ) != LCD_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -817,7 +889,7 @@ KERNEL_Status_t Task_LCD_Cycle( void )
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
-        if ( ( LCD_Status = LCD_Cycle( ) ) != LCD_Status_Success )
+        if ( ( LCD_Status = LCD_Cycle( LCD_All ) ) != LCD_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -834,7 +906,7 @@ KERNEL_Status_t Task_LCD_DeInitialize( void )
     do
     {
         LCD_Status_t LCD_Status = LCD_Status_Error;
-        if ( ( LCD_Status = LCD_DeInitialize( ) ) != LCD_Status_Success )
+        if ( ( LCD_Status = LCD_DeInitialize( LCD_All ) ) != LCD_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -972,7 +1044,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260122-1122";
+const char PLATFORM_VERSION[] = "0.0.0.v20260124-1234";
 
 // #############################################################################
 // #### File Guard #############################################################
