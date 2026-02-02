@@ -19,7 +19,7 @@ Modularized abstraction for **generic computing device**. It encapsulates multip
 
 As for its architecture, It has several components, Three are considered main components, **Kernel**, **Module**, and **Service** . Other components can be considered as assisted components for the main components.
 
-![[Platform.png]]
+![Platform.png](Platform.png)
 
 
 ---
