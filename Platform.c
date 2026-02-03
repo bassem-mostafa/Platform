@@ -72,6 +72,10 @@ static KERNEL_Status_t Task_DMA_Initialize( void );
 static KERNEL_Status_t Task_DMA_Cycle( void );
 static KERNEL_Status_t Task_DMA_DeInitialize( void );
 
+static KERNEL_Status_t Task_RTC_Initialize( void );
+static KERNEL_Status_t Task_RTC_Cycle( void );
+static KERNEL_Status_t Task_RTC_DeInitialize( void );
+
 static KERNEL_Status_t Task_USB_Initialize( void );
 static KERNEL_Status_t Task_USB_Cycle( void );
 static KERNEL_Status_t Task_USB_DeInitialize( void );
@@ -80,21 +84,17 @@ static KERNEL_Status_t Task_UART_Initialize( void );
 static KERNEL_Status_t Task_UART_Cycle( void );
 static KERNEL_Status_t Task_UART_DeInitialize( void );
 
-static KERNEL_Status_t Task_LOG_Initialize( void );
-static KERNEL_Status_t Task_LOG_Cycle( void );
-static KERNEL_Status_t Task_LOG_DeInitialize( void );
-
-static KERNEL_Status_t Task_RTC_Initialize( void );
-static KERNEL_Status_t Task_RTC_Cycle( void );
-static KERNEL_Status_t Task_RTC_DeInitialize( void );
+static KERNEL_Status_t Task_SPI_Initialize( void );
+static KERNEL_Status_t Task_SPI_Cycle( void );
+static KERNEL_Status_t Task_SPI_DeInitialize( void );
 
 static KERNEL_Status_t Task_TIM_Initialize( void );
 static KERNEL_Status_t Task_TIM_Cycle( void );
 static KERNEL_Status_t Task_TIM_DeInitialize( void );
 
-static KERNEL_Status_t Task_SPI_Initialize( void );
-static KERNEL_Status_t Task_SPI_Cycle( void );
-static KERNEL_Status_t Task_SPI_DeInitialize( void );
+static KERNEL_Status_t Task_LOG_Initialize( void );
+static KERNEL_Status_t Task_LOG_Cycle( void );
+static KERNEL_Status_t Task_LOG_DeInitialize( void );
 
 static KERNEL_Status_t Task_EEPROM_Initialize( void );
 static KERNEL_Status_t Task_EEPROM_Cycle( void );
@@ -112,11 +112,9 @@ static KERNEL_Status_t Task_LCD_Initialize( void );
 static KERNEL_Status_t Task_LCD_Cycle( void );
 static KERNEL_Status_t Task_LCD_DeInitialize( void );
 
-#if 0 // FIXME Enhance platform CLI
 static KERNEL_Status_t Task_CLI_Initialize( void );
 static KERNEL_Status_t Task_CLI_Cycle( void );
 static KERNEL_Status_t Task_CLI_DeInitialize( void );
-#endif
 
 // #############################################################################
 // #### Private Variable(s) ####################################################
@@ -140,6 +138,12 @@ static KERNEL_Task_t Task_DMA = {
     Task_DMA_DeInitialize,
 };
 
+static KERNEL_Task_t Task_RTC = {
+    Task_RTC_Initialize,
+    Task_RTC_Cycle,
+    Task_RTC_DeInitialize,
+};
+
 static KERNEL_Task_t Task_USB = {
     Task_USB_Initialize,
     Task_USB_Cycle,
@@ -152,16 +156,10 @@ static KERNEL_Task_t Task_UART = {
     Task_UART_DeInitialize,
 };
 
-static KERNEL_Task_t Task_LOG = {
-    Task_LOG_Initialize,
-    Task_LOG_Cycle,
-    Task_LOG_DeInitialize,
-};
-
-static KERNEL_Task_t Task_RTC = {
-    Task_RTC_Initialize,
-    Task_RTC_Cycle,
-    Task_RTC_DeInitialize,
+static KERNEL_Task_t Task_SPI = {
+    Task_SPI_Initialize,
+    Task_SPI_Cycle,
+    Task_SPI_DeInitialize,
 };
 
 static KERNEL_Task_t Task_TIM = {
@@ -170,10 +168,10 @@ static KERNEL_Task_t Task_TIM = {
     Task_TIM_DeInitialize,
 };
 
-static KERNEL_Task_t Task_SPI = {
-    Task_SPI_Initialize,
-    Task_SPI_Cycle,
-    Task_SPI_DeInitialize,
+static KERNEL_Task_t Task_LOG = {
+    Task_LOG_Initialize,
+    Task_LOG_Cycle,
+    Task_LOG_DeInitialize,
 };
 
 static KERNEL_Task_t Task_EEPROM = {
@@ -200,13 +198,11 @@ static KERNEL_Task_t Task_LCD = {
     Task_LCD_DeInitialize,
 };
 
-#if 0 // FIXME Enhance platform CLI
 static KERNEL_Task_t Task_CLI = {
     Task_CLI_Initialize,
     Task_CLI_Cycle,
     Task_CLI_DeInitialize,
 };
-#endif
 
 static KERNEL_Task_t * Platform_Task[] = {
     &Task_PWR,
@@ -221,12 +217,11 @@ static KERNEL_Task_t * Platform_Task[] = {
     &Task_LOG,
 
     &Task_UART,
+    &Task_GSM,
 
     &Task_SPI,
     &Task_EEPROM,
     &Task_TDC,
-
-    &Task_GSM,
 
     &Task_LCD,
 
@@ -403,6 +398,60 @@ static KERNEL_Status_t Task_DMA_DeInitialize( void )
     return Status;
 }
 
+static KERNEL_Status_t Task_RTC_Initialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        RTC_Status_t RTC_Status = RTC_Status_Error;
+        if ( ( RTC_Status = RTC_Initialize( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_RTC_Cycle( void ) // Note: Execution time around 0.280 to 0.506 ms
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        RTC_Status_t RTC_Status = RTC_Status_Error;
+        if ( ( RTC_Status = RTC_Cycle( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_RTC_DeInitialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        RTC_Status_t RTC_Status = RTC_Status_Error;
+        if ( ( RTC_Status = RTC_DeInitialize( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
 static KERNEL_Status_t Task_USB_Initialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
@@ -511,14 +560,14 @@ static KERNEL_Status_t Task_UART_DeInitialize( void )
     return Status;
 }
 
-static KERNEL_Status_t Task_LOG_Initialize( void )
+static KERNEL_Status_t Task_SPI_Initialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        LOG_Status_t LOG_Status = LOG_Status_Error;
-        if ( ( LOG_Status = LOG_Initialize( LOG_All ) ) != LOG_Status_Success )
+        SPI_Status_t SPI_Status = SPI_Status_Error;
+        if ( ( SPI_Status = SPI_Initialize( SPI_All ) ) != SPI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -529,14 +578,14 @@ static KERNEL_Status_t Task_LOG_Initialize( void )
     return Status;
 }
 
-static KERNEL_Status_t Task_LOG_Cycle( void ) // Note: Execution time around 0.216 to 0.564 ms
+static KERNEL_Status_t Task_SPI_Cycle( void ) // Note: Execution time around 0.820 to 10.2 ms !!!
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        LOG_Status_t LOG_Status = LOG_Status_Error;
-        if ( ( LOG_Status = LOG_Cycle( LOG_All ) ) != LOG_Status_Success )
+        SPI_Status_t SPI_Status = SPI_Status_Error;
+        if ( ( SPI_Status = SPI_Cycle( SPI_All ) ) != SPI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -547,68 +596,14 @@ static KERNEL_Status_t Task_LOG_Cycle( void ) // Note: Execution time around 0.2
     return Status;
 }
 
-static KERNEL_Status_t Task_LOG_DeInitialize( void )
+static KERNEL_Status_t Task_SPI_DeInitialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        LOG_Status_t LOG_Status = LOG_Status_Error;
-        if ( ( LOG_Status = LOG_DeInitialize( LOG_All ) ) != LOG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        RTC_Status_t RTC_Status = RTC_Status_Error;
-        if ( ( RTC_Status = RTC_Initialize( RTC_All ) ) != RTC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_Cycle( void ) // Note: Execution time around 0.280 to 0.506 ms
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        RTC_Status_t RTC_Status = RTC_Status_Error;
-        if ( ( RTC_Status = RTC_Cycle( RTC_All ) ) != RTC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        RTC_Status_t RTC_Status = RTC_Status_Error;
-        if ( ( RTC_Status = RTC_DeInitialize( RTC_All ) ) != RTC_Status_Success )
+        SPI_Status_t SPI_Status = SPI_Status_Error;
+        if ( ( SPI_Status = SPI_DeInitialize( SPI_All ) ) != SPI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -673,14 +668,14 @@ static KERNEL_Status_t Task_TIM_DeInitialize( void )
     return Status;
 }
 
-static KERNEL_Status_t Task_SPI_Initialize( void )
+static KERNEL_Status_t Task_LOG_Initialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        SPI_Status_t SPI_Status = SPI_Status_Error;
-        if ( ( SPI_Status = SPI_Initialize( SPI_All ) ) != SPI_Status_Success )
+        LOG_Status_t LOG_Status = LOG_Status_Error;
+        if ( ( LOG_Status = LOG_Initialize( LOG_All ) ) != LOG_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -691,14 +686,14 @@ static KERNEL_Status_t Task_SPI_Initialize( void )
     return Status;
 }
 
-static KERNEL_Status_t Task_SPI_Cycle( void ) // Note: Execution time around 0.820 to 10.2 ms !!!
+static KERNEL_Status_t Task_LOG_Cycle( void ) // Note: Execution time around 0.216 to 0.564 ms
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        SPI_Status_t SPI_Status = SPI_Status_Error;
-        if ( ( SPI_Status = SPI_Cycle( SPI_All ) ) != SPI_Status_Success )
+        LOG_Status_t LOG_Status = LOG_Status_Error;
+        if ( ( LOG_Status = LOG_Cycle( LOG_All ) ) != LOG_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -709,14 +704,14 @@ static KERNEL_Status_t Task_SPI_Cycle( void ) // Note: Execution time around 0.8
     return Status;
 }
 
-static KERNEL_Status_t Task_SPI_DeInitialize( void )
+static KERNEL_Status_t Task_LOG_DeInitialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
-        SPI_Status_t SPI_Status = SPI_Status_Error;
-        if ( ( SPI_Status = SPI_DeInitialize( SPI_All ) ) != SPI_Status_Success )
+        LOG_Status_t LOG_Status = LOG_Status_Error;
+        if ( ( LOG_Status = LOG_DeInitialize( LOG_All ) ) != LOG_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -943,7 +938,6 @@ static KERNEL_Status_t Task_LCD_DeInitialize( void )
     return Status;
 }
 
-#if 0 // FIXME Enhance platform CLI
 static KERNEL_Status_t Task_CLI_Initialize( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
@@ -951,7 +945,7 @@ static KERNEL_Status_t Task_CLI_Initialize( void )
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
-        if ( ( CLI_Status = CLI_Initialize( ) ) != CLI_Status_Success )
+        if ( ( CLI_Status = CLI_Initialize( CLI_All ) ) != CLI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -969,7 +963,7 @@ static KERNEL_Status_t Task_CLI_Cycle( void )
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
-        if ( ( CLI_Status = CLI_Cycle( ) ) != CLI_Status_Success )
+        if ( ( CLI_Status = CLI_Cycle( CLI_All ) ) != CLI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -987,7 +981,7 @@ static KERNEL_Status_t Task_CLI_DeInitialize( void )
     do
     {
         CLI_Status_t CLI_Status = CLI_Status_Error;
-        if ( ( CLI_Status = CLI_DeInitialize( ) ) != CLI_Status_Success )
+        if ( ( CLI_Status = CLI_DeInitialize( CLI_All ) ) != CLI_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -997,7 +991,6 @@ static KERNEL_Status_t Task_CLI_DeInitialize( void )
 
     return Status;
 }
-#endif
 
 // #############################################################################
 // #### Public Method(s) #######################################################
@@ -1037,12 +1030,15 @@ PLATFORM_Status_t PLATFORM_Cycle( void )
 
     do
     {
+        // TODO Enhance underlying tasks cycle to have consistent timing
+        GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_High );
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
         if ( ( KERNEL_Status = KERNEL_Cycle( ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
         }
+        GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_Low );
     }
     while ( 0 );
 
@@ -1073,7 +1069,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260202-1914";
+const char PLATFORM_VERSION[] = "0.0.0.v20260203-0213";
 
 // #############################################################################
 // #### File Guard #############################################################

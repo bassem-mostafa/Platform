@@ -194,9 +194,6 @@
     #define LCD_GPIO_Reset           GPIO_87 // PD6
     #define LCD_GPIO_ChipSelect      GPIO_86 // PD5
 
-    #define ACQ_GPIO_PULSE           GPIO_64 // PC7
-    #define ACQ_GPIO_CAPTURE         GPIO_65 // PC8
-
     #define TDC_SPI                  SPI_2
     #define TDC_GPIO_SCK             SPI_2_SCK
     #define TDC_GPIO_MOSI            SPI_2_MOSI
@@ -230,6 +227,12 @@
     #define GSM_UART_DBG             UART_Null
     #define GSM_GPIO_DBG_TX          GPIO_Null
     #define GSM_GPIO_DBG_RX          GPIO_Null
+
+    #define ACQ_GPIO_PULSE           GPIO_64 // PC7
+    #define ACQ_GPIO_CAPTURE         GPIO_65 // PC8
+
+    #define DEBUG_GPIO_O_1           GPIO_41 // PE10
+    #define DEBUG_GPIO_O_2           GPIO_42 // PE11
 
 /**
  *  @}
