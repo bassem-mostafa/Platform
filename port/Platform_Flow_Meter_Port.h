@@ -228,8 +228,9 @@
     #define GSM_GPIO_DBG_TX          GPIO_Null
     #define GSM_GPIO_DBG_RX          GPIO_Null
 
-    #define ACQ_GPIO_PULSE           GPIO_64 // PC7
-    #define ACQ_GPIO_CAPTURE         GPIO_65 // PC8
+    #define ACQ_GPIO_PULSE           GPIO_43 // PE12
+    #define ACQ_GPIO_CAPTURE         GPIO_44 // PE13
+    #define ACQ_GPIO_ModeSwitch      GPIO_45 // PE14
 
     #define DEBUG_GPIO_O_1           GPIO_41 // PE10
     #define DEBUG_GPIO_O_2           GPIO_42 // PE11
