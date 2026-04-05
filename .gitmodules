@@ -79,3 +79,6 @@
 [submodule "Service/TIM"]
 	path = Service/TIM
 	url = https://github.com/bassem-mostafa/TIM.git
+[submodule "Library/GRAPH"]
+	path = Library/GRAPH
+	url = https://github.com/bassem-mostafa/GRAPH.git
