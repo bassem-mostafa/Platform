@@ -223,13 +223,9 @@ static KERNEL_Task_t * Platform_Task[] = {
     &Task_EEPROM,
     &Task_TDC,
 
-#if 0 // FIXME Enable Platform LCD
     &Task_LCD,
-#endif
 
-#if 0 // FIXME Enable Platform CLI
     &Task_CLI,
-#endif
 
     NULL, // End indicator
 };
@@ -1071,7 +1067,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260518-0122";
+const char PLATFORM_VERSION[] = "0.0.0.v20260523-1800";
 
 // #############################################################################
 // #### File Guard #############################################################
