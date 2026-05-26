@@ -205,8 +205,11 @@ static KERNEL_Task_t Task_CLI = {
 };
 
 static KERNEL_Task_t * Platform_Task[] = {
+
     &Task_PWR,
     &Task_GPIO,
+
+    NULL, // End indicator
 
     &Task_DMA,
 
@@ -1069,7 +1072,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260526-1736";
+const char PLATFORM_VERSION[] = "0.0.0.v20260526-1748";
 
 // #############################################################################
 // #### File Guard #############################################################
