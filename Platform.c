@@ -216,8 +216,10 @@ static KERNEL_Task_t * Platform_Task[] = {
     &Task_USB,
     &Task_LOG,
 
+#if 0 // TODO Enable UART & GSM
     &Task_UART,
     &Task_GSM,
+#endif
 
     &Task_SPI,
     &Task_EEPROM,
@@ -1067,7 +1069,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260524-1644";
+const char PLATFORM_VERSION[] = "0.0.0.v20260526-1252";
 
 // #############################################################################
 // #### File Guard #############################################################
