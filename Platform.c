@@ -1003,7 +1003,7 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
     do
     {
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_Initialize( ) ) != KERNEL_Status_Success )
+        if ( ( KERNEL_Status = KERNEL_Initialize( KERNEL_All ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
@@ -1011,7 +1011,7 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
 
         for ( KERNEL_Task_t ** Task = Platform_Task; *Task != NULL; Task++ )
         {
-            if ( ( KERNEL_Status = KERNEL_TaskCreate( *Task ) ) != KERNEL_Status_Success )
+            if ( ( KERNEL_Status = KERNEL_TaskCreate( KERNEL_Null, *Task ) ) != KERNEL_Status_Success )
             {
                 // FIXME
             }
@@ -1033,7 +1033,7 @@ PLATFORM_Status_t PLATFORM_Cycle( void )
         // TODO Enhance underlying tasks cycle to have consistent timing
         GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_High );
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_Cycle( ) ) != KERNEL_Status_Success )
+        if ( ( KERNEL_Status = KERNEL_Cycle( KERNEL_All ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
@@ -1052,7 +1052,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
     do
     {
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_DeInitialize( ) ) != KERNEL_Status_Success )
+        if ( ( KERNEL_Status = KERNEL_DeInitialize( KERNEL_All ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
@@ -1069,7 +1069,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260526-1252";
+const char PLATFORM_VERSION[] = "0.0.0.v20260526-1736";
 
 // #############################################################################
 // #### File Guard #############################################################
