@@ -134,6 +134,7 @@ extern "C"
     #include "Service/CLI/CLI.h"
     #include "Service/LOG/LOG.h"
     // #include "Service/MEM/MEM.h" // TODO
+    // #include "Service/MNT/MNT.h" // TODO
     // #include "Service/NET/NET.h" // TODO
     #include "Service/TIM/TIM.h"
 
