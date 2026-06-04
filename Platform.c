@@ -60,10 +60,6 @@
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
 
-static KERNEL_Status_t Task_PWR_Initialize( void );
-static KERNEL_Status_t Task_PWR_Cycle( void );
-static KERNEL_Status_t Task_PWR_DeInitialize( void );
-
 static KERNEL_Status_t Task_GPIO_Initialize( void );
 static KERNEL_Status_t Task_GPIO_Cycle( void );
 static KERNEL_Status_t Task_GPIO_DeInitialize( void );
@@ -120,15 +116,13 @@ static KERNEL_Status_t Task_CLI_Initialize( void );
 static KERNEL_Status_t Task_CLI_Cycle( void );
 static KERNEL_Status_t Task_CLI_DeInitialize( void );
 
+static KERNEL_Status_t Task_PWR_Initialize( void );
+static KERNEL_Status_t Task_PWR_Cycle( void );
+static KERNEL_Status_t Task_PWR_DeInitialize( void );
+
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
-
-static KERNEL_Task_t Task_PWR = {
-    Task_PWR_Initialize,
-    Task_PWR_Cycle,
-    Task_PWR_DeInitialize,
-};
 
 static KERNEL_Task_t Task_GPIO = {
     Task_GPIO_Initialize,
@@ -214,9 +208,14 @@ static KERNEL_Task_t Task_CLI = {
     Task_CLI_DeInitialize,
 };
 
+static KERNEL_Task_t Task_PWR = {
+    Task_PWR_Initialize,
+    Task_PWR_Cycle,
+    Task_PWR_DeInitialize,
+};
+
 static KERNEL_Task_t * Platform_Task[] = {
 
-    &Task_PWR,
     &Task_GPIO,
 
     &Task_WDG,
@@ -240,66 +239,14 @@ static KERNEL_Task_t * Platform_Task[] = {
 
     &Task_CLI,
 
+    &Task_PWR, // @note MUST BE LAST
+
     NULL, // End indicator
 };
 
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
-
-static KERNEL_Status_t Task_PWR_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_Initialize( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_PWR_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_Cycle( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_PWR_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_DeInitialize( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
 
 static KERNEL_Status_t Task_GPIO_Initialize( void )
 {
@@ -1057,6 +1004,60 @@ static KERNEL_Status_t Task_CLI_DeInitialize( void )
     return Status;
 }
 
+static KERNEL_Status_t Task_PWR_Initialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+
+    do
+    {
+        if ( ( PWR_Status = PWR_Initialize( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_PWR_Cycle( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+
+    do
+    {
+        if ( ( PWR_Status = PWR_Cycle( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_PWR_DeInitialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+
+    do
+    {
+        if ( ( PWR_Status = PWR_DeInitialize( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
 // #############################################################################
 // #### Public Method(s) #######################################################
 // #############################################################################
@@ -1134,7 +1135,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260604-1909";
+const char PLATFORM_VERSION[] = "0.0.0.v20260604-1946";
 
 // #############################################################################
 // #### File Guard #############################################################
