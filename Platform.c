@@ -215,7 +215,6 @@ static KERNEL_Task_t Task_PWR = {
 };
 
 static KERNEL_Task_t * Platform_Task[] = {
-
     &Task_GPIO,
 
     &Task_WDG,
@@ -1135,7 +1134,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260604-1946";
+const char PLATFORM_VERSION[] = "0.0.0.v20260605-0019";
 
 // #############################################################################
 // #### File Guard #############################################################
