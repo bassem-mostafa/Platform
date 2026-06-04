@@ -68,6 +68,10 @@ static KERNEL_Status_t Task_GPIO_Initialize( void );
 static KERNEL_Status_t Task_GPIO_Cycle( void );
 static KERNEL_Status_t Task_GPIO_DeInitialize( void );
 
+static KERNEL_Status_t Task_WDG_Initialize( void );
+static KERNEL_Status_t Task_WDG_Cycle( void );
+static KERNEL_Status_t Task_WDG_DeInitialize( void );
+
 static KERNEL_Status_t Task_DMA_Initialize( void );
 static KERNEL_Status_t Task_DMA_Cycle( void );
 static KERNEL_Status_t Task_DMA_DeInitialize( void );
@@ -130,6 +134,12 @@ static KERNEL_Task_t Task_GPIO = {
     Task_GPIO_Initialize,
     Task_GPIO_Cycle,
     Task_GPIO_DeInitialize,
+};
+
+static KERNEL_Task_t Task_WDG = {
+    Task_WDG_Initialize,
+    Task_WDG_Cycle,
+    Task_WDG_DeInitialize,
 };
 
 static KERNEL_Task_t Task_DMA = {
@@ -208,6 +218,8 @@ static KERNEL_Task_t * Platform_Task[] = {
 
     &Task_PWR,
     &Task_GPIO,
+
+    &Task_WDG,
 
     &Task_DMA,
 
@@ -333,6 +345,60 @@ static KERNEL_Status_t Task_GPIO_DeInitialize( void )
     do
     {
         if ( ( GPIO_Status = GPIO_DeInitialize( GPIO_All ) ) != GPIO_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_WDG_Initialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+
+    do
+    {
+        if ( ( WDG_Status = WDG_Initialize( WDG_All ) ) != WDG_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_WDG_Cycle( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+
+    do
+    {
+        if ( ( WDG_Status = WDG_Cycle( WDG_All ) ) != WDG_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_WDG_DeInitialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+
+    do
+    {
+        if ( ( WDG_Status = WDG_DeInitialize( WDG_All ) ) != WDG_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -1068,7 +1134,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260604-0241";
+const char PLATFORM_VERSION[] = "0.0.0.v20260604-1610";
 
 // #############################################################################
 // #### File Guard #############################################################

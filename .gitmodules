@@ -67,6 +67,9 @@
 [submodule "Module/USB"]
 	path = Module/USB
 	url = https://github.com/bassem-mostafa/USB.git
+[submodule "Module/WDG"]
+	path = Module/WDG
+	url = https://github.com/bassem-mostafa/WDG.git
 [submodule "Service/CLI"]
 	path = Service/CLI
 	url = https://github.com/bassem-mostafa/CLI.git

@@ -120,6 +120,7 @@ extern "C"
     #include "Module/TMR/TMR.h"
     #include "Module/UART/UART.h"
     #include "Module/USB/USB.h"
+    #include "Module/WDG/WDG.h"
 
     /**
      *  @}
