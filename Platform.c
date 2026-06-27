@@ -1076,7 +1076,7 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
 
         for ( KERNEL_Task_t ** Task = Platform_Task; *Task != NULL; Task++ )
         {
-            if ( ( KERNEL_Status = KERNEL_TaskCreate( KERNEL_Null, *Task ) ) != KERNEL_Status_Success )
+            if ( ( KERNEL_Status = KERNEL_TaskCreate( PLATFORM_DEFAULT_KERNEL, *Task ) ) != KERNEL_Status_Success )
             {
                 // FIXME
             }
@@ -1134,7 +1134,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260627-1910";
+const char PLATFORM_VERSION[] = "0.0.0.v20260627-1916";
 
 // #############################################################################
 // #### File Guard #############################################################
