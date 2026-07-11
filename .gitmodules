@@ -16,6 +16,9 @@
 [submodule "Module/ADC"]
 	path = Module/ADC
 	url = https://github.com/bassem-mostafa/ADC.git
+[submodule "Module/CRC"]
+	path = Module/CRC
+	url = https://github.com/bassem-mostafa/CRC.git
 [submodule "Module/DMA"]
 	path = Module/DMA
 	url = https://github.com/bassem-mostafa/DMA.git
