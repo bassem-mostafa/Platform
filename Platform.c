@@ -68,6 +68,10 @@ static KERNEL_Status_t Task_WDG_Initialize( void );
 static KERNEL_Status_t Task_WDG_Cycle( void );
 static KERNEL_Status_t Task_WDG_DeInitialize( void );
 
+static KERNEL_Status_t Task_CRC_Initialize( void );
+static KERNEL_Status_t Task_CRC_Cycle( void );
+static KERNEL_Status_t Task_CRC_DeInitialize( void );
+
 static KERNEL_Status_t Task_DMA_Initialize( void );
 static KERNEL_Status_t Task_DMA_Cycle( void );
 static KERNEL_Status_t Task_DMA_DeInitialize( void );
@@ -134,6 +138,12 @@ static KERNEL_Task_t Task_WDG = {
     Task_WDG_Initialize,
     Task_WDG_Cycle,
     Task_WDG_DeInitialize,
+};
+
+static KERNEL_Task_t Task_CRC = {
+    Task_CRC_Initialize,
+    Task_CRC_Cycle,
+    Task_CRC_DeInitialize,
 };
 
 static KERNEL_Task_t Task_DMA = {
@@ -218,6 +228,8 @@ static KERNEL_Task_t * Platform_Task[] = {
     &Task_GPIO, // @note MUST BE FIRST
 
     &Task_WDG,
+
+    &Task_CRC,
 
     &Task_DMA,
 
@@ -345,6 +357,60 @@ static KERNEL_Status_t Task_WDG_DeInitialize( void )
     do
     {
         if ( ( WDG_Status = WDG_DeInitialize( WDG_All ) ) != WDG_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_CRC_Initialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+
+    do
+    {
+        if ( ( CRC_Status = CRC_Initialize( CRC_All ) ) != CRC_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_CRC_Cycle( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+
+    do
+    {
+        if ( ( CRC_Status = CRC_Cycle( CRC_All ) ) != CRC_Status_Success )
+        {
+            Status = KERNEL_Status_Error;
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+static KERNEL_Status_t Task_CRC_DeInitialize( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+
+    do
+    {
+        if ( ( CRC_Status = CRC_DeInitialize( CRC_All ) ) != CRC_Status_Success )
         {
             Status = KERNEL_Status_Error;
             break;
@@ -1134,7 +1200,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260711-1911";
+const char PLATFORM_VERSION[] = "0.0.0.v20260719-2341";
 
 // #############################################################################
 // #### File Guard #############################################################
