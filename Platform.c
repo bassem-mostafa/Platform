@@ -1129,10 +1129,11 @@ static KERNEL_Status_t Task_PWR_DeInitialize( void )
 
 PLATFORM_Status_t PLATFORM_Initiatize( void )
 {
-    PLATFORM_Status_t Status = PLATFORM_Status_Error;
+    PLATFORM_Status_t Status = PLATFORM_Status_Success;
 
     do
     {
+        // TODO Move creation/initialization to owner module
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
         if ( ( KERNEL_Status = KERNEL_Initialize( KERNEL_All ) ) != KERNEL_Status_Success )
         {
@@ -1145,10 +1146,9 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
             if ( ( KERNEL_Status = KERNEL_TaskCreate( PLATFORM_DEFAULT_KERNEL, *Task ) ) != KERNEL_Status_Success )
             {
                 // FIXME
+                Status = PLATFORM_Status_Error;
             }
         }
-
-        Status = PLATFORM_Status_Success;
     }
     while ( 0 );
 
@@ -1162,6 +1162,7 @@ PLATFORM_Status_t PLATFORM_Cycle( void )
     do
     {
         // TODO Enhance underlying tasks cycle to have consistent timing
+        // TODO Monitor tasks' cycle duration, keep record of min, max, average, ...etc statistics
         GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_High );
         KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
         if ( ( KERNEL_Status = KERNEL_Cycle( KERNEL_All ) ) != KERNEL_Status_Success )
@@ -1200,7 +1201,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260815-2008";
+const char PLATFORM_VERSION[] = "0.0.0.v20260818-0345";
 
 // #############################################################################
 // #### File Guard #############################################################
