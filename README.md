@@ -49,11 +49,11 @@ The platform **library component**, it provides various toolsets for other compo
 # Convention
 ## Naming
 
-Follows **snake case** for the kernel/module/service/library roots and types, and follows **camel case** for attributes/methods.
+Follows **Ada Case (Camel Snake Case)** for the kernel/module/service/library roots and types, and follows **camel case** for attributes/methods.
 
 > [!IMPORTANT]
 > Digits are **always** prefixed by **underscore**.
-> Capital letter names **always** follows **snake case**
+> Capital letter names **always** follows **Ada Case**
 ### Example
 
 ```C
@@ -132,19 +132,80 @@ GPIO_Status_t GPIO_SetMode( GPIO_t GPIOx, GPIO_Mode_t Mode );
 GPIO_Status_t GPIO_SetFunction( GPIO_t GPIOx, GPIO_Function_t Function );
 ```
 
----
-# Enhancements
+# Directory structure
 
-- [ ] Module
-	- [ ] PWR
-	- [x] GPIO
-	- [x] SPI
-	- [x] TDC
-	- [ ] LCD
-	- [ ] UART
-	- [ ] 
-- [ ] Service
-	- [x] LOG
-	- [x] TIM
-	- [ ] 
-- [ ] 
+```markdown
+Platform/
+├─ Docs/              # Documents
+├─ Kernel/            # Kernel
+│  ├─ port/           # HW board/platform implementations
+│  │  ├─ ...          # specific hw board/platform
+│  │  └─ Stub         # stub
+│  ├─ variant/        # OS variant which provides interfaces, configurations, ...etc
+│  │  ├─ BareMetal    # Bare-metal
+│  │  ├─ FreeRTOS     # FreeRTOS
+│  │  ├─ Zephyr       # Zephyr
+│  │  └─ ...          # More
+│  ├─ ...             # Source files
+│  ├─ Kernel.h        # Interface
+│  └─ README.md       # Overview
+├─ Library/           # Libraries
+│  ├─ BUFFER/         # Buffer
+│  │  ├─ ...          # Source files
+│  │  ├─ BUFFER.h     # Interface
+│  │  └─ README.md    # Overview
+│  ├─ LIST/           # List
+│  │  ├─ ...          # Source files
+│  │  ├─ LIST.h       # Interface
+│  │  └─ README.md    # Overview
+│  └─ ...             # Other libraries directories
+├─ Module/            # Modules
+│  ├─ GPIO/           # GPIO
+│  │  ├─ driver/      # HW peripheral/module drivers
+│  │  │  └─ ...       # specific hw peripheral/module implementation
+│  │  ├─ port/        # HW board/platform implementations
+│  │  │  ├─ ...       # specific hw board/platform
+│  │  │  └─ Stub      # stub
+│  │  ├─ ...          # Source files
+│  │  ├─ GPIO.h       # Interface
+│  │  └─ README.md    # Overview
+│  ├─ RTC/            # RTC
+│  │  ├─ driver/      # HW peripheral/module drivers
+│  │  │  └─ ...       # specific hw peripheral/module implementation
+│  │  ├─ port/        # HW board/platform implementations
+│  │  │  ├─ ...       # specific hw board/platform
+│  │  │  └─ Stub      # stub
+│  │  ├─ ...          # Source files
+│  │  ├─ RTC.h        # Interface
+│  │  └─ README.md    # Overview
+│  ├─ UART/           # UART
+│  │  ├─ driver/      # HW peripheral/module drivers
+│  │  │  └─ ...       # specific hw peripheral/module implementation
+│  │  ├─ port/        # HW board/platform implementations
+│  │  │  ├─ ...       # specific hw board/platform
+│  │  │  └─ Stub      # stub
+│  │  ├─ ...          # Source files
+│  │  ├─ UART.h       # Interface
+│  │  └─ README.md    # Overview
+│  └─ ...             # Other modules directories
+├─ port/              # Platform port configuration
+│  └─ ...             # HW board/platform configuration such as pin-mapping, activated modules, services, ports, ...etc
+├─ Service/           # Services
+│  ├─ LOG/            # Logger
+│  │  ├─ port/        # HW board/platform implementations
+│  │  │  ├─ ...       # specific hw board/platform
+│  │  │  └─ Stub      # stub
+│  │  ├─ ...          # Source files
+│  │  ├─ LOG.h        # Interface
+│  │  └─ README.md    # Overview
+│  ├─ TIM/            # Time
+│  │  ├─ port/        # HW board/platform implementations
+│  │  │  ├─ ...       # specific hw board/platform
+│  │  │  └─ Stub      # stub
+│  │  ├─ ...          # Source files
+│  │  ├─ TIM.h        # Interface
+│  │  └─ README.md    # Overview
+│  └─ ...             # Other services directories
+├─ Platform.h         # Interface
+└─ README.md          # Overview
+```
