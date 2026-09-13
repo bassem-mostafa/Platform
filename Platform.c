@@ -60,1095 +60,153 @@
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
 
-static KERNEL_Status_t Task_GPIO_Initialize( void );
-static KERNEL_Status_t Task_GPIO_Cycle( void );
-static KERNEL_Status_t Task_GPIO_DeInitialize( void );
-
-static KERNEL_Status_t Task_WDG_Initialize( void );
-static KERNEL_Status_t Task_WDG_Cycle( void );
-static KERNEL_Status_t Task_WDG_DeInitialize( void );
-
-static KERNEL_Status_t Task_CRC_Initialize( void );
-static KERNEL_Status_t Task_CRC_Cycle( void );
-static KERNEL_Status_t Task_CRC_DeInitialize( void );
-
-static KERNEL_Status_t Task_DMA_Initialize( void );
-static KERNEL_Status_t Task_DMA_Cycle( void );
-static KERNEL_Status_t Task_DMA_DeInitialize( void );
-
-static KERNEL_Status_t Task_RTC_Initialize( void );
-static KERNEL_Status_t Task_RTC_Cycle( void );
-static KERNEL_Status_t Task_RTC_DeInitialize( void );
-
-static KERNEL_Status_t Task_USB_Initialize( void );
-static KERNEL_Status_t Task_USB_Cycle( void );
-static KERNEL_Status_t Task_USB_DeInitialize( void );
-
-static KERNEL_Status_t Task_UART_Initialize( void );
-static KERNEL_Status_t Task_UART_Cycle( void );
-static KERNEL_Status_t Task_UART_DeInitialize( void );
-
-static KERNEL_Status_t Task_SPI_Initialize( void );
-static KERNEL_Status_t Task_SPI_Cycle( void );
-static KERNEL_Status_t Task_SPI_DeInitialize( void );
-
-static KERNEL_Status_t Task_TIM_Initialize( void );
-static KERNEL_Status_t Task_TIM_Cycle( void );
-static KERNEL_Status_t Task_TIM_DeInitialize( void );
-
-static KERNEL_Status_t Task_LOG_Initialize( void );
-static KERNEL_Status_t Task_LOG_Cycle( void );
-static KERNEL_Status_t Task_LOG_DeInitialize( void );
-
-static KERNEL_Status_t Task_EEPROM_Initialize( void );
-static KERNEL_Status_t Task_EEPROM_Cycle( void );
-static KERNEL_Status_t Task_EEPROM_DeInitialize( void );
-
-static KERNEL_Status_t Task_TDC_Initialize( void );
-static KERNEL_Status_t Task_TDC_Cycle( void );
-static KERNEL_Status_t Task_TDC_DeInitialize( void );
-
-static KERNEL_Status_t Task_GSM_Initialize( void );
-static KERNEL_Status_t Task_GSM_Cycle( void );
-static KERNEL_Status_t Task_GSM_DeInitialize( void );
-
-static KERNEL_Status_t Task_LCD_Initialize( void );
-static KERNEL_Status_t Task_LCD_Cycle( void );
-static KERNEL_Status_t Task_LCD_DeInitialize( void );
-
-static KERNEL_Status_t Task_CLI_Initialize( void );
-static KERNEL_Status_t Task_CLI_Cycle( void );
-static KERNEL_Status_t Task_CLI_DeInitialize( void );
-
-static KERNEL_Status_t Task_PWR_Initialize( void );
-static KERNEL_Status_t Task_PWR_Cycle( void );
-static KERNEL_Status_t Task_PWR_DeInitialize( void );
-
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
-
-static KERNEL_Task_t Task_GPIO = {
-    Task_GPIO_Initialize,
-    Task_GPIO_Cycle,
-    Task_GPIO_DeInitialize,
-};
-
-static KERNEL_Task_t Task_WDG = {
-    Task_WDG_Initialize,
-    Task_WDG_Cycle,
-    Task_WDG_DeInitialize,
-};
-
-static KERNEL_Task_t Task_CRC = {
-    Task_CRC_Initialize,
-    Task_CRC_Cycle,
-    Task_CRC_DeInitialize,
-};
-
-static KERNEL_Task_t Task_DMA = {
-    Task_DMA_Initialize,
-    Task_DMA_Cycle,
-    Task_DMA_DeInitialize,
-};
-
-static KERNEL_Task_t Task_RTC = {
-    Task_RTC_Initialize,
-    Task_RTC_Cycle,
-    Task_RTC_DeInitialize,
-};
-
-static KERNEL_Task_t Task_USB = {
-    Task_USB_Initialize,
-    Task_USB_Cycle,
-    Task_USB_DeInitialize,
-};
-
-static KERNEL_Task_t Task_UART = {
-    Task_UART_Initialize,
-    Task_UART_Cycle,
-    Task_UART_DeInitialize,
-};
-
-static KERNEL_Task_t Task_SPI = {
-    Task_SPI_Initialize,
-    Task_SPI_Cycle,
-    Task_SPI_DeInitialize,
-};
-
-static KERNEL_Task_t Task_TIM = {
-    Task_TIM_Initialize,
-    Task_TIM_Cycle,
-    Task_TIM_DeInitialize,
-};
-
-static KERNEL_Task_t Task_LOG = {
-    Task_LOG_Initialize,
-    Task_LOG_Cycle,
-    Task_LOG_DeInitialize,
-};
-
-static KERNEL_Task_t Task_EEPROM = {
-    Task_EEPROM_Initialize,
-    Task_EEPROM_Cycle,
-    Task_EEPROM_DeInitialize,
-};
-
-static KERNEL_Task_t Task_TDC = {
-    Task_TDC_Initialize,
-    Task_TDC_Cycle,
-    Task_TDC_DeInitialize,
-};
-
-static KERNEL_Task_t Task_GSM = {
-    Task_GSM_Initialize,
-    Task_GSM_Cycle,
-    Task_GSM_DeInitialize,
-};
-
-static KERNEL_Task_t Task_LCD = {
-    Task_LCD_Initialize,
-    Task_LCD_Cycle,
-    Task_LCD_DeInitialize,
-};
-
-static KERNEL_Task_t Task_CLI = {
-    Task_CLI_Initialize,
-    Task_CLI_Cycle,
-    Task_CLI_DeInitialize,
-};
-
-static KERNEL_Task_t Task_PWR = {
-    Task_PWR_Initialize,
-    Task_PWR_Cycle,
-    Task_PWR_DeInitialize,
-};
-
-static KERNEL_Task_t * Platform_Task[] = {
-    &Task_GPIO, // @note MUST BE FIRST
-
-    &Task_WDG,
-
-    &Task_CRC,
-
-    &Task_DMA,
-
-    &Task_RTC,
-    &Task_TIM,
-
-    &Task_USB,
-    &Task_LOG,
-
-    &Task_UART,
-    &Task_GSM,
-
-    &Task_SPI,
-    &Task_EEPROM,
-    &Task_TDC,
-
-    &Task_LCD,
-
-    &Task_CLI,
-
-    &Task_PWR, // @note MUST BE LAST
-
-    NULL, // End indicator
-};
 
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
 
-static KERNEL_Status_t Task_GPIO_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
-
-    do
-    {
-        if ( ( GPIO_Status = GPIO_Initialize( GPIO_All ) ) != GPIO_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_GPIO_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
-
-    do
-    {
-        if ( ( GPIO_Status = GPIO_Cycle( GPIO_All ) ) != GPIO_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_GPIO_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
-
-    do
-    {
-        if ( ( GPIO_Status = GPIO_DeInitialize( GPIO_All ) ) != GPIO_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_WDG_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    WDG_Status_t WDG_Status = WDG_Status_Success;
-
-    do
-    {
-        if ( ( WDG_Status = WDG_Initialize( WDG_All ) ) != WDG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_WDG_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    WDG_Status_t WDG_Status = WDG_Status_Success;
-
-    do
-    {
-        if ( ( WDG_Status = WDG_Cycle( WDG_All ) ) != WDG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_WDG_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    WDG_Status_t WDG_Status = WDG_Status_Success;
-
-    do
-    {
-        if ( ( WDG_Status = WDG_DeInitialize( WDG_All ) ) != WDG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CRC_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        if ( ( CRC_Status = CRC_Initialize( CRC_All ) ) != CRC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CRC_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        if ( ( CRC_Status = CRC_Cycle( CRC_All ) ) != CRC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CRC_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CRC_Status_t CRC_Status = CRC_Status_Success;
-
-    do
-    {
-        if ( ( CRC_Status = CRC_DeInitialize( CRC_All ) ) != CRC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_DMA_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    DMA_Status_t DMA_Status = DMA_Status_Success;
-
-    do
-    {
-        if ( ( DMA_Status = DMA_Initialize( DMA_All ) ) != DMA_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_DMA_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    DMA_Status_t DMA_Status = DMA_Status_Success;
-
-    do
-    {
-        if ( ( DMA_Status = DMA_Cycle( DMA_All ) ) != DMA_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_DMA_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    DMA_Status_t DMA_Status = DMA_Status_Success;
-
-    do
-    {
-        if ( ( DMA_Status = DMA_DeInitialize( DMA_All ) ) != DMA_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    RTC_Status_t RTC_Status = RTC_Status_Success;
-
-    do
-    {
-        if ( ( RTC_Status = RTC_Initialize( RTC_All ) ) != RTC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    RTC_Status_t RTC_Status = RTC_Status_Success;
-
-    do
-    {
-        if ( ( RTC_Status = RTC_Cycle( RTC_All ) ) != RTC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_RTC_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    RTC_Status_t RTC_Status = RTC_Status_Success;
-
-    do
-    {
-        if ( ( RTC_Status = RTC_DeInitialize( RTC_All ) ) != RTC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_USB_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    USB_Status_t USB_Status = USB_Status_Success;
-
-    do
-    {
-        if ( ( USB_Status = USB_Initialize( USB_All ) ) != USB_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_USB_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    USB_Status_t USB_Status = USB_Status_Success;
-
-    do
-    {
-        if ( ( USB_Status = USB_Cycle( USB_All ) ) != USB_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_USB_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    USB_Status_t USB_Status = USB_Status_Success;
-
-    do
-    {
-        if ( ( USB_Status = USB_DeInitialize( USB_All ) ) != USB_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_UART_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    UART_Status_t UART_Status = UART_Status_Success;
-
-    do
-    {
-        if ( ( UART_Status = UART_Initialize( UART_All ) ) != UART_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_UART_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    UART_Status_t UART_Status = UART_Status_Success;
-
-    do
-    {
-        if ( ( UART_Status = UART_Cycle( UART_All ) ) != UART_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_UART_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    UART_Status_t UART_Status = UART_Status_Success;
-
-    do
-    {
-        if ( ( UART_Status = UART_DeInitialize( UART_All ) ) != UART_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_SPI_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    SPI_Status_t SPI_Status = SPI_Status_Success;
-
-    do
-    {
-        if ( ( SPI_Status = SPI_Initialize( SPI_All ) ) != SPI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_SPI_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    SPI_Status_t SPI_Status = SPI_Status_Success;
-
-    do
-    {
-        if ( ( SPI_Status = SPI_Cycle( SPI_All ) ) != SPI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_SPI_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    SPI_Status_t SPI_Status = SPI_Status_Success;
-
-    do
-    {
-        if ( ( SPI_Status = SPI_DeInitialize( SPI_All ) ) != SPI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TIM_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TIM_Status_t TIM_Status = TIM_Status_Success;
-
-    do
-    {
-        if ( ( TIM_Status = TIM_Initialize( TIM_All ) ) != TIM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TIM_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TIM_Status_t TIM_Status = TIM_Status_Success;
-
-    do
-    {
-        if ( ( TIM_Status = TIM_Cycle( TIM_All ) ) != TIM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TIM_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TIM_Status_t TIM_Status = TIM_Status_Success;
-
-    do
-    {
-        if ( ( TIM_Status = TIM_DeInitialize( TIM_All ) ) != TIM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LOG_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LOG_Status_t LOG_Status = LOG_Status_Success;
-
-    do
-    {
-        if ( ( LOG_Status = LOG_Initialize( LOG_All ) ) != LOG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LOG_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LOG_Status_t LOG_Status = LOG_Status_Success;
-
-    do
-    {
-        if ( ( LOG_Status = LOG_Cycle( LOG_All ) ) != LOG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LOG_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LOG_Status_t LOG_Status = LOG_Status_Success;
-
-    do
-    {
-        if ( ( LOG_Status = LOG_DeInitialize( LOG_All ) ) != LOG_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_EEPROM_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-
-    do
-    {
-        if ( ( EEPROM_Status = EEPROM_Initialize( EEPROM_All ) ) != EEPROM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_EEPROM_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-
-    do
-    {
-        if ( ( EEPROM_Status = EEPROM_Cycle( EEPROM_All ) ) != EEPROM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_EEPROM_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-
-    do
-    {
-        if ( ( EEPROM_Status = EEPROM_DeInitialize( EEPROM_All ) ) != EEPROM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TDC_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TDC_Status_t TDC_Status = TDC_Status_Success;
-
-    do
-    {
-        if ( ( TDC_Status = TDC_Initialize( TDC_All ) ) != TDC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TDC_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TDC_Status_t TDC_Status = TDC_Status_Success;
-
-    do
-    {
-        if ( ( TDC_Status = TDC_Cycle( TDC_All ) ) != TDC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_TDC_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    TDC_Status_t TDC_Status = TDC_Status_Success;
-
-    do
-    {
-        if ( ( TDC_Status = TDC_DeInitialize( TDC_All ) ) != TDC_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_GSM_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GSM_Status_t GSM_Status = GSM_Status_Success;
-
-    do
-    {
-        if ( ( GSM_Status = GSM_Initialize( GSM_All ) ) != GSM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_GSM_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GSM_Status_t GSM_Status = GSM_Status_Success;
-
-    do
-    {
-        if ( ( GSM_Status = GSM_Cycle( GSM_All ) ) != GSM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_GSM_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    GSM_Status_t GSM_Status = GSM_Status_Success;
-
-    do
-    {
-        if ( ( GSM_Status = GSM_DeInitialize( GSM_All ) ) != GSM_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LCD_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LCD_Status_t LCD_Status = LCD_Status_Success;
-
-    do
-    {
-        if ( ( LCD_Status = LCD_Initialize( LCD_All ) ) != LCD_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LCD_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LCD_Status_t LCD_Status = LCD_Status_Success;
-
-    do
-    {
-        if ( ( LCD_Status = LCD_Cycle( LCD_All ) ) != LCD_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_LCD_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    LCD_Status_t LCD_Status = LCD_Status_Success;
-
-    do
-    {
-        if ( ( LCD_Status = LCD_DeInitialize( LCD_All ) ) != LCD_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CLI_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CLI_Status_t CLI_Status = CLI_Status_Success;
-
-    do
-    {
-        if ( ( CLI_Status = CLI_Initialize( CLI_All ) ) != CLI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CLI_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CLI_Status_t CLI_Status = CLI_Status_Success;
-
-    do
-    {
-        if ( ( CLI_Status = CLI_Cycle( CLI_All ) ) != CLI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_CLI_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    CLI_Status_t CLI_Status = CLI_Status_Success;
-
-    do
-    {
-        if ( ( CLI_Status = CLI_DeInitialize( CLI_All ) ) != CLI_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_PWR_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_Initialize( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_PWR_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_Cycle( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t Task_PWR_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-    PWR_Status_t PWR_Status = PWR_Status_Success;
-
-    do
-    {
-        if ( ( PWR_Status = PWR_DeInitialize( PWR_All ) ) != PWR_Status_Success )
-        {
-            Status = KERNEL_Status_Error;
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
 // #############################################################################
 // #### Public Method(s) #######################################################
 // #############################################################################
 
-PLATFORM_Status_t PLATFORM_Initiatize( void )
+PLATFORM_Status_t PLATFORM_Initialize( void )
 {
     PLATFORM_Status_t Status = PLATFORM_Status_Success;
+    KERNEL_Status_t KERNEL_Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
+    RTC_Status_t RTC_Status = RTC_Status_Success;
+    DMA_Status_t DMA_Status = DMA_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+    USB_Status_t USB_Status = USB_Status_Success;
+    UART_Status_t UART_Status = UART_Status_Success;
+    SPI_Status_t SPI_Status = SPI_Status_Success;
+    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
+    TDC_Status_t TDC_Status = TDC_Status_Success;
+    LCD_Status_t LCD_Status = LCD_Status_Success;
+    GSM_Status_t GSM_Status = GSM_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+    LOG_Status_t LOG_Status = LOG_Status_Success;
+    TIM_Status_t TIM_Status = TIM_Status_Success;
+    CLI_Status_t CLI_Status = CLI_Status_Success;
 
     do
     {
-        // TODO Move creation/initialization to owner module
-        KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_Initialize( KERNEL_All ) ) != KERNEL_Status_Success )
+        // TODO The kernel should be last to be initialized,
+        //      So as to guarantee that modules and services have been initialized and ready to serve
+        // @note Initialize the kernel
+        if ( ( KERNEL_Status = KERNEL_Initialize( PLATFORM_DEFAULT_KERNEL ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
         }
 
-        for ( KERNEL_Task_t ** Task = Platform_Task; *Task != NULL; Task++ )
+        // @note Initialize the modules
+        if ( ( WDG_Status = WDG_Initialize( WDG_All ) ) != WDG_Status_Success )
         {
-            if ( ( KERNEL_Status = KERNEL_TaskCreate( PLATFORM_DEFAULT_KERNEL, *Task ) ) != KERNEL_Status_Success )
-            {
-                // FIXME
-                Status = PLATFORM_Status_Error;
-            }
+            Status = PLATFORM_Status_Error;
+            break;
         }
+
+        if ( ( GPIO_Status = GPIO_Initialize( GPIO_All ) ) != GPIO_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( RTC_Status = RTC_Initialize( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( DMA_Status = DMA_Initialize( DMA_All ) ) != DMA_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CRC_Status = CRC_Initialize( CRC_All ) ) != CRC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( USB_Status = USB_Initialize( USB_All ) ) != USB_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( UART_Status = UART_Initialize( UART_All ) ) != UART_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( SPI_Status = SPI_Initialize( SPI_All ) ) != SPI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( EEPROM_Status = EEPROM_Initialize( EEPROM_All ) ) != EEPROM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TDC_Status = TDC_Initialize( TDC_All ) ) != TDC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( LCD_Status = LCD_Initialize( LCD_All ) ) != LCD_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( GSM_Status = GSM_Initialize( GSM_All ) ) != GSM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( PWR_Status = PWR_Initialize( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        // @note Initialize the services
+        if ( ( LOG_Status = LOG_Initialize( LOG_All ) ) != LOG_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TIM_Status = TIM_Initialize( TIM_All ) ) != TIM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CLI_Status = CLI_Initialize( CLI_All ) ) != CLI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        // @note Set kernel tick source
+        // TODO Kernel should be able to select the tick source
+
+        // @note Delegate control to kernel
+        // TODO Kernel should be able to take control
     }
     while ( 0 );
 
@@ -1158,39 +216,268 @@ PLATFORM_Status_t PLATFORM_Initiatize( void )
 PLATFORM_Status_t PLATFORM_Cycle( void )
 {
     PLATFORM_Status_t Status = PLATFORM_Status_Success;
+    KERNEL_Status_t KERNEL_Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
+    RTC_Status_t RTC_Status = RTC_Status_Success;
+    DMA_Status_t DMA_Status = DMA_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+    USB_Status_t USB_Status = USB_Status_Success;
+    UART_Status_t UART_Status = UART_Status_Success;
+    SPI_Status_t SPI_Status = SPI_Status_Success;
+    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
+    TDC_Status_t TDC_Status = TDC_Status_Success;
+    LCD_Status_t LCD_Status = LCD_Status_Success;
+    GSM_Status_t GSM_Status = GSM_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+    LOG_Status_t LOG_Status = LOG_Status_Success;
+    TIM_Status_t TIM_Status = TIM_Status_Success;
+    CLI_Status_t CLI_Status = CLI_Status_Success;
 
     do
     {
         // TODO Enhance underlying tasks cycle to have consistent timing
         // TODO Monitor tasks' cycle duration, keep record of min, max, average, ...etc statistics
-        GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_High );
-        KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_Cycle( KERNEL_All ) ) != KERNEL_Status_Success )
+
+        // @note Cycle the kernel
+        if ( ( KERNEL_Status = KERNEL_Cycle( PLATFORM_DEFAULT_KERNEL ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
         }
+
+        // @note Cycle the modules
+        if ( ( WDG_Status = WDG_Cycle( WDG_All ) ) != WDG_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( GPIO_Status = GPIO_Cycle( GPIO_All ) ) != GPIO_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( RTC_Status = RTC_Cycle( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( DMA_Status = DMA_Cycle( DMA_All ) ) != DMA_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CRC_Status = CRC_Cycle( CRC_All ) ) != CRC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( USB_Status = USB_Cycle( USB_All ) ) != USB_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( UART_Status = UART_Cycle( UART_All ) ) != UART_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( SPI_Status = SPI_Cycle( SPI_All ) ) != SPI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( EEPROM_Status = EEPROM_Cycle( EEPROM_All ) ) != EEPROM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TDC_Status = TDC_Cycle( TDC_All ) ) != TDC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( LCD_Status = LCD_Cycle( LCD_All ) ) != LCD_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( GSM_Status = GSM_Cycle( GSM_All ) ) != GSM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
         GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_Low );
+        if ( ( PWR_Status = PWR_Cycle( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+        GPIO_Write( DEBUG_GPIO_O_2, GPIO_Value_High );
+
+        // @note Cycle the services
+        if ( ( LOG_Status = LOG_Cycle( LOG_All ) ) != LOG_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TIM_Status = TIM_Cycle( TIM_All ) ) != TIM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CLI_Status = CLI_Cycle( CLI_All ) ) != CLI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
     }
     while ( 0 );
 
     return Status;
 }
 
-PLATFORM_Status_t PLATFORM_DeInitiatize( void )
+PLATFORM_Status_t PLATFORM_DeInitialize( void )
 {
-    PLATFORM_Status_t Status = PLATFORM_Status_Error;
+    PLATFORM_Status_t Status = PLATFORM_Status_Success;
+    KERNEL_Status_t KERNEL_Status = KERNEL_Status_Success;
+    WDG_Status_t WDG_Status = WDG_Status_Success;
+    GPIO_Status_t GPIO_Status = GPIO_Status_Success;
+    RTC_Status_t RTC_Status = RTC_Status_Success;
+    DMA_Status_t DMA_Status = DMA_Status_Success;
+    CRC_Status_t CRC_Status = CRC_Status_Success;
+    USB_Status_t USB_Status = USB_Status_Success;
+    UART_Status_t UART_Status = UART_Status_Success;
+    SPI_Status_t SPI_Status = SPI_Status_Success;
+    EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
+    TDC_Status_t TDC_Status = TDC_Status_Success;
+    LCD_Status_t LCD_Status = LCD_Status_Success;
+    GSM_Status_t GSM_Status = GSM_Status_Success;
+    PWR_Status_t PWR_Status = PWR_Status_Success;
+    LOG_Status_t LOG_Status = LOG_Status_Success;
+    TIM_Status_t TIM_Status = TIM_Status_Success;
+    CLI_Status_t CLI_Status = CLI_Status_Success;
 
     do
     {
-        KERNEL_Status_t KERNEL_Status = KERNEL_Status_Error;
-        if ( ( KERNEL_Status = KERNEL_DeInitialize( KERNEL_All ) ) != KERNEL_Status_Success )
+        // @note DeInitialize the kernel
+        if ( ( KERNEL_Status = KERNEL_DeInitialize( PLATFORM_DEFAULT_KERNEL ) ) != KERNEL_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
         }
 
-        Status = PLATFORM_Status_Success;
+        // @note DeInitialize the modules
+        if ( ( WDG_Status = WDG_DeInitialize( WDG_All ) ) != WDG_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( GPIO_Status = GPIO_DeInitialize( GPIO_All ) ) != GPIO_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( RTC_Status = RTC_DeInitialize( RTC_All ) ) != RTC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( DMA_Status = DMA_DeInitialize( DMA_All ) ) != DMA_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CRC_Status = CRC_DeInitialize( CRC_All ) ) != CRC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( USB_Status = USB_DeInitialize( USB_All ) ) != USB_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( UART_Status = UART_DeInitialize( UART_All ) ) != UART_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( SPI_Status = SPI_DeInitialize( SPI_All ) ) != SPI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( EEPROM_Status = EEPROM_DeInitialize( EEPROM_All ) ) != EEPROM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TDC_Status = TDC_DeInitialize( TDC_All ) ) != TDC_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( LCD_Status = LCD_DeInitialize( LCD_All ) ) != LCD_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( GSM_Status = GSM_DeInitialize( GSM_All ) ) != GSM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( PWR_Status = PWR_DeInitialize( PWR_All ) ) != PWR_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        // @note DeInitialize the services
+        if ( ( LOG_Status = LOG_DeInitialize( LOG_All ) ) != LOG_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( TIM_Status = TIM_DeInitialize( TIM_All ) ) != TIM_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CLI_Status = CLI_DeInitialize( CLI_All ) ) != CLI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
     }
     while ( 0 );
 
@@ -1201,7 +488,7 @@ PLATFORM_Status_t PLATFORM_DeInitiatize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20260907-0308";
+const char PLATFORM_VERSION[] = "0.0.0.v20260913-1832";
 
 // #############################################################################
 // #### File Guard #############################################################

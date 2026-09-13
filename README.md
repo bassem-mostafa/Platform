@@ -1,23 +1,29 @@
 # Platform
 
-Modularized abstraction for **generic computing device**. It encapsulates multiple layers internally such as **board support package ( BSP )**, **hardware abstraction layer ( HAL )**, **drivers**, **operating system**, ... etc.
+Device agnostic modularized abstraction for **generic computing device**. It encapsulates multiple layers internally such as **board support package ( BSP )**, **hardware abstraction layer ( HAL )**, **drivers**, **operating system**, ... etc.
+
+> [!NOTE]
+> Platform is **not** an application in its own, it only serves as a device foundation layer that exposes all device capabilities. Upon which you can build various applications that make use of provided capabilities without the need to get into the hardware details, which let your focus only on the application side.
+
+> [!NOTE]
+> All components within the platform is not part of any application, each component within the platform serves as a building block of the platform.
 
 ---
 # Terminologies
 
-| Term      | Definition                                                                                                                                         |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Interface | Outline of what functionalities are being provided and how they can be accessed, without exposing internal details.                                |
-| Variant   | Alternatives targeting same or similar objectives.                                                                                                 |
-| Port      | Adaptation layer for different computing devices and/or environments.                                                                              |
-| Driver    | Bridge layer for a particular device type, provides and/or manages the operating and/or controlling functionalities being provided by that device. |
-| Stub      | Template or predefined implementation for missing or _not-yet-implemented_ functionalities.                                                        |
-| Hardware  | Physical components of a computing device.                                                                                                         |
+| Term      | Definition                                                                                                                                                                      |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Interface | Outline of what functionalities are being provided and how they can be accessed, without exposing internal details.                                                             |
+| Variant   | Alternatives targeting same or similar objectives/functions.                                                                                                                    |
+| Port      | Adaptation layer for different computing devices and/or environments.                                                                                                           |
+| Driver    | Bridge layer for a particular device type, provides and/or manages the operating and/or controlling functionalities being provided by that specific hardware peripheral/module. |
+| Stub      | Template or predefined implementation for missing or _not-yet-implemented_ functionalities.                                                                                     |
+| Hardware  | Physical components of a computing device such as peripherals/modules/...etc.                                                                                                   |
 
 ---
 # Architecture
 
-As for its architecture, It has several components, Three are considered main components, **Kernel**, **Module**, and **Service** . Other components can be considered as assisted components for the main components.
+As for platform architecture, It has several components, Three are considered main components, **Kernel**, **Module**, and **Service** . Other components can be considered as assisted components for the main components.
 
 ![Platform.png](Platform.png)
 
@@ -29,31 +35,41 @@ As for its architecture, It has several components, Three are considered main co
 
 ### Kernel
 
-The platform **core component**, it is a middle layer between the actual operating system variant and the platform itself. It controls application/module/service access to the operating system functionalities.
+The platform **core component**, it is a middle layer between the actual operating system variant and the platform itself. It controls application/module/service access to the operating system like functionalities. Though kernel could be pure bare-metal or based on one of RTOS providers.
 
 ### Module
 
-The platform **worker component**, it is an abstraction layer for hardware chipsets.
+The platform **worker component**, it is an abstraction layer for hardware chipsets, it encapsulates internally a set of drivers that are being utilized based on the implementation port and the availability of underlying chipsets.
+
+Examples for such modules are:
+- GPIO module which abstracts the whole platform GPIOs functionalities, encapsulating internally whether the GPIO is internally (native) or externally accessible through expander for example.
+- RTC module which abstracts platform RTC functionalities, encapsulating internally whether the RTC is internally (native) or externally accessible through some communication protocol.
+- So on for UART, SPI, USB, ADC, GSM, ...etc.
 
 ### Service
 
-The platform **service component**, it makes use platform modules to achieve a higher level functionality.
+The platform **service component**, it might make use of platform modules to achieve a higher level functionality but not restricted to the usage of the modules, some services might not depend on any modules at all.
+
+Examples for such services are:
+- LOGger service which might be directed to UART, USB, ... or other modules.
+- TIMe service which might be directed to RTC, Timer, Tick, ... or other modules.
+- So on for NETwork, MEMory, UTIL, ...etc.
 
 ## Others
 
 ### Library
 
-The platform **library component**, it provides various toolsets for other components.
+The platform **library component**, it provides various toolsets for other components, it is a generic, doesn't depend on any specific platform component. Though library is a standalone component.
 
 ---
 # Convention
 ## Naming
 
-Follows **Ada Case (Camel Snake Case)** for the kernel/module/service/library roots and types, and follows **camel case** for attributes/methods.
+Prefixes follows **Ada Case (Camel Snake Case)** for the kernel/module/service/library roots and types, and follows **camel case** for attributes/methods suffixes.
 
 > [!IMPORTANT]
 > Digits are **always** prefixed by **underscore**.
-> Capital letter names **always** follows **Ada Case**
+> Upper case names **always** follows **Ada Case**
 ### Example
 
 ```C
@@ -209,3 +225,9 @@ Platform/
 ├─ Platform.h         # Interface
 └─ README.md          # Overview
 ```
+
+
+# TODO
+
+- [ ] Add RCC Module
+- [ ] 

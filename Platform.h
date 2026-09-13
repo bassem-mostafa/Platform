@@ -178,7 +178,7 @@ extern "C"
      *
      *  @return PLATFORM_Status_t
      */
-    PLATFORM_Status_t PLATFORM_Initiatize( void );
+    PLATFORM_Status_t PLATFORM_Initialize( void );
 
     /**
      *  @brief Cycle platform kernel/modules/services
@@ -192,7 +192,7 @@ extern "C"
      *
      *  @return PLATFORM_Status_t
      */
-    PLATFORM_Status_t PLATFORM_DeInitiatize( void );
+    PLATFORM_Status_t PLATFORM_DeInitialize( void );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
