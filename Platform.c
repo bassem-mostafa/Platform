@@ -60,13 +60,42 @@
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
 
+static CLI_Status_t Version_Execute( int argc, char ** argv );
+
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
 
+static CLI_Command_t Platform = {
+    .Name = "platform",
+    .Help = "Activate Platform Context",
+    .Execute = NULL,
+};
+
+static CLI_Command_t Version = {
+    .Name = "version",
+    .Help = "Platform Version",
+    .Execute = Version_Execute,
+};
+
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
+
+static CLI_Status_t Version_Execute( int argc, char ** argv )
+{
+    CLI_Status_t CLI_Status = CLI_Status_Success;
+
+    do
+    {
+        CLI_Data_t Data[ 32 ];
+        UTIL_StringFormatBufferAppend( Data, 0, UTIL_SizeOfWithoutNull( Data ), "\n%s", PLATFORM_VERSION );
+        CLI_Write( PLATFORM_DEFAULT_CLI, Data, UTIL_StringLength( Data ) );
+    }
+    while ( 0 );
+
+    return CLI_Status;
+}
 
 // #############################################################################
 // #### Public Method(s) #######################################################
@@ -197,6 +226,18 @@ PLATFORM_Status_t PLATFORM_Initialize( void )
         }
 
         if ( ( CLI_Status = CLI_Initialize( CLI_All ) ) != CLI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CLI_Status = CLI_Add( PLATFORM_DEFAULT_CLI, &Platform, &Version ) ) != CLI_Status_Success )
+        {
+            Status = PLATFORM_Status_Error;
+            break;
+        }
+
+        if ( ( CLI_Status = CLI_Add( PLATFORM_DEFAULT_CLI, NULL, &Platform ) ) != CLI_Status_Success )
         {
             Status = PLATFORM_Status_Error;
             break;
@@ -488,7 +529,7 @@ PLATFORM_Status_t PLATFORM_DeInitialize( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char PLATFORM_VERSION[] = "0.0.0.v20261011-2228";
+const char PLATFORM_VERSION[] = "0.0.0.v20261012-0036";
 
 // #############################################################################
 // #### File Guard #############################################################
